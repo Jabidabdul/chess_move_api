@@ -4,7 +4,6 @@ const PORT = 3001;
 const cors = require('cors');
 const html2json = require('html2json').html2json;
 const axios = require('axios');
-const { title } = require('process');
 
 app.use(cors())
 app.use(express.json())
@@ -25,11 +24,6 @@ app.get('/',(req,res)=>{
                 chess_code = element.child[0].child[0].child[0].text;
                 title = element.child[1].child[0].child[0].child[0].text;
                 move_code = element.child[1].child[0].child[0].child[3].child[0].text;
-                // const obj = {
-                //     'chess_code' : chess_code,
-                //     'tittle': title,
-                //     'move_code' : move_code
-                // }
                 obj += `<div style="display:flex; margin-left:20px">
                             <h2 style="margin-right:10px">${chess_code }</h2>
                             <div>
@@ -69,7 +63,6 @@ app.get('/:code', (req, res)=>{
                 if(chess_code == param){
                     res.send(
                         `<div style="display:flex; margin-left:20px">
-                            <h2 style="margin-right:10px">${chess_code }</h2>
                             <div>
                                 <h4 style="margin:none">${title}</h4>
                                 <p style="margin:none">${move_code}</p>
